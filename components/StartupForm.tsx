@@ -15,6 +15,10 @@ import { createPitch } from '@/lib/actions'
 const StartupForm = () => {
   const [errors, setErrors] = useState<Record<string, string>>({})
   const [pitch, setPitch] = useState('')
+  const [title, setTitle] = useState('')
+  const [description, setDescription] = useState('')
+  const [category, setCategory] = useState('')
+  const [link, setLink] = useState('')
   const router = useRouter()
   const handleFormSubmit = async (prevState: any, formData: FormData) => {
     try {
@@ -25,8 +29,15 @@ const StartupForm = () => {
         link: formData.get('link') as string,
         pitch,
       }
+
+      setTitle(formValues.title)
+      setDescription(formValues.description)
+      setCategory(formValues.category)
+      setLink(formValues.link)
+
       await formSchema.parseAsync(formValues)
       const result = await createPitch(prevState, formData, pitch)
+
       if (result.status === 'SUCCESS') {
         toast.success('Your startup pitch has been created successfully')
         router.push(`/startup/${result._id}`)
@@ -68,6 +79,8 @@ const StartupForm = () => {
           className="startup-form_input"
           required
           placeholder="Startup Title"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
         />
         {errors.title && <p className="startup-form_error">{errors.title}</p>}
       </div>
@@ -82,6 +95,8 @@ const StartupForm = () => {
           className="startup-form_textarea"
           required
           placeholder="Startup Description"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
         />
         {errors.description && (
           <p className="startup-form_error">{errors.description}</p>
@@ -98,6 +113,8 @@ const StartupForm = () => {
           className="startup-form_input"
           required
           placeholder="Startup Category (Tech, Health, Education...)"
+          value={category}
+          onChange={(e) => setCategory(e.target.value)}
         />
         {errors.category && (
           <p className="startup-form_error">{errors.category}</p>
@@ -114,6 +131,8 @@ const StartupForm = () => {
           className="startup-form_input"
           required
           placeholder="Startup Image URL"
+          value={link}
+          onChange={(e) => setLink(e.target.value)}
         />
         {errors.link && <p className="startup-form_error">{errors.link}</p>}
       </div>
