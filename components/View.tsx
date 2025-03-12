@@ -8,7 +8,7 @@ const View = async ({ id }: { id: string }) => {
   const { views: totalViews } = await client
     .withConfig({ useCdn: false })
     .fetch(STARTUP_VIEWS_QUERY, { id })
-  const formatNumber = totalViews < 2 ? 'View' : 'Views' // I made this by myself as a challenge!
+  const formatNumber = totalViews < 2 ? 'View' : 'Views'
 
   after(
     async () =>

@@ -46,7 +46,15 @@ const StartupForm = () => {
     } catch (error) {
       if (error instanceof z.ZodError) {
         const fieldErrors = error.flatten().fieldErrors
-        setErrors(fieldErrors as unknown as Record<string, string>)
+        // setErrors(fieldErrors as unknown as Record<string, string>)
+        setErrors(
+          Object.fromEntries(
+            Object.entries(fieldErrors).map(([key, value]) => [
+              key,
+              (value ?? []).join(' - '),
+            ])
+          )
+        )
 
         toast.error('Please check your inputs and try again')
 
