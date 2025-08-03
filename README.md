@@ -12,4 +12,4 @@ The same PPR strategy is applied to the user profile page—user information is 
 
 To submit a startup, users must authenticate via GitHub using social login. Account data is stored in Sanity. The submission form is built with Next.js Server Actions and useFormState, with all fields validated through Zod.
 
-<img width="779" height="601" alt="storeit" src="https://github.com/user-attachments/assets/e689af2a-b826-432b-ac93-a56532a32b7f" />
+<img width="765" height="605" alt="ycdirectory" src="https://github.com/user-attachments/assets/21715e38-bac2-4d20-ae01-0f44b6647597" />
